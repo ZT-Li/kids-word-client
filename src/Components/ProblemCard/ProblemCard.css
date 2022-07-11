@@ -1,0 +1,29 @@
+.card {
+    display: flex;
+    position: relative;
+    height: 10vh;
+    width: 10vw;
+    border-radius: 45px;
+    justify-content: center;
+}
+
+.p-img{
+    position: relative;
+    object-fit: contain;
+    height: 5vh;
+    width: 8vw;
+    border-radius: 45px;
+}
+
+.p-ans {
+    position: relative;
+    margin-top: 1vh;
+    font-family: 'Indie Flower', cursive;
+    text-align: center;
+    font-size: larger;
+}
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Smooch&display=swap');
+
+.edit-btn, .remove-btn{
+    height: 2vh;
+}
