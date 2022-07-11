@@ -13,7 +13,6 @@ const MainPage = () => {
     axios.get(process.env.REACT_APP_API_URL)
         .then(res => {
             dataArray = res.data;
-            console.log(dataArray);
         })
         .catch(err => console.log(err));
 
@@ -89,7 +88,6 @@ const MainPage = () => {
             alert("wrong");
         }
     }
-    console.log("render");
 
     return (
         <>
