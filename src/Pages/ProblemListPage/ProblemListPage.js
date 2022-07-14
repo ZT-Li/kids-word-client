@@ -6,7 +6,7 @@ import axios from 'axios';
 const ProblemListPage = () => {
     const [dataArray, setDataArray] = useState([]);
 
-    const url = 'http://localhost:5000/api';
+    const url = process.env.REACT_APP_API_URL;
 
     function seeAllProblems() {
         //get data from database
@@ -16,12 +16,15 @@ const ProblemListPage = () => {
             }).catch(err => console.log(err));
     }
 
+    window.addEventListener('load', e => {
+        seeAllProblems();
+    })
+
     return (
         <>
             <div className='problem-container'>
-                <button onClick={seeAllProblems}>see all problems</button>
                 {dataArray.map((data, idx) => (
-                    <ProblemCard img={data.img_src} ans={data.answer} key={idx} />
+                    <ProblemCard img={data.img_src} ans={data.answer} id={data._id} key={idx} />
                 ))}
             </div>
         </>

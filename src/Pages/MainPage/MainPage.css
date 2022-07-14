@@ -39,23 +39,24 @@ a{
 }
 
 .to-quiz {
-    width: 50%;
+    width: 33%;
     height: 100%;
     transition: all 0.5s;
-}
-
-.to-quiz:hover {
-    color: black;
-    background-color: plum;
 }
 
 .to-problem {
-    width: 50%;
+    width: 33%;
     height: 100%;
     transition: all 0.5s;
 }
 
-.to-problem:hover {
+.to-problem-list {
+    width: 33%;
+    height: 100%;
+    transition: all 0.5s;
+}
+
+.to-problem:hover, .to-quiz:hover, .to-problem-list:hover {
     color: black;
     background-color: plum;
 }

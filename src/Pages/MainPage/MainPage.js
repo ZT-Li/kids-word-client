@@ -9,13 +9,6 @@ const MainPage = () => {
     let dataArray = [];
     let checkedImage = false;
 
-    //preload the data from backend
-    axios.get(process.env.REACT_APP_API_URL)
-        .then(res => {
-            dataArray = res.data;
-        })
-        .catch(err => console.log(err));
-
     //references of html elements
     const preload_ref = useRef(null);
     const url_ref = useRef(null);
@@ -35,13 +28,9 @@ const MainPage = () => {
     //check btn onclick function
     function checkImage(e) {
         e.preventDefault();
-        if (/\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url_ref.current.value)) {
-            checkImage_ref.current.src = url_ref.current.value;
-            prompt_ref.current.innerHTML = "Url is valid! Add this image? ＜（￣︶￣）＞";
-            checkedImage = true;
-        } else {
-            prompt_ref.current.innerHTML = "This Url is not an image... (^_^;)";
-        }
+        checkImage_ref.current.src = url_ref.current.value;
+        prompt_ref.current.innerHTML = "Add this image? ＜（￣︶￣）＞";
+        checkedImage = true;
     }
 
     //add btn onclick function
@@ -55,20 +44,29 @@ const MainPage = () => {
         }
 
         //send the img url and answer to the server
-        /*
-        axios.post('http://localhost:5000/api', {
+        axios.post(process.env.REACT_APP_API_URL, {
             img_src: url_ref.current.value,
             answer: ans_ref.current.value
         })
             .then(res => console.log(res))
             .catch(err => console.log(err));
-            */
+
     }
 
     //start quiz
     function startQuiz(e) {
         e.preventDefault();
-        sample_ref.current.src = dataArray[0].img_src;
+        dataIdx = 0;
+        //get the data from database
+        axios.get(process.env.REACT_APP_API_URL)
+            .then(res => {
+                dataArray = res.data;
+                if (dataArray.length === 0)
+                    alert("please add more problems")
+                else
+                    sample_ref.current.src = dataArray[0].img_src;
+            })
+            .catch(err => console.log(err));
     }
 
     //check the answer
@@ -98,6 +96,9 @@ const MainPage = () => {
                 </a>
                 <a className="to-problem" href="#problem-creation">
                     <div className="label">Add Problems</div>
+                </a>
+                <a className="to-problem-list" href="/problems">
+                    <div className="label">Problem List</div>
                 </a>
             </div>
 
