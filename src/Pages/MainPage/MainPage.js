@@ -11,6 +11,7 @@ const MainPage = () => {
 
     //references of html elements
     const preload_ref = useRef(null);
+    const postload_ref = useRef(null);
     const url_ref = useRef(null);
     const ans_ref = useRef(null);
     const input_ref = useRef(null);
@@ -22,6 +23,7 @@ const MainPage = () => {
     useEffect(() => {
         setTimeout(() => {
             preload_ref.current.style = "display: none";
+            postload_ref.current.style = "display: block";
         }, 4500);
     }, []);
 
@@ -90,35 +92,37 @@ const MainPage = () => {
     return (
         <>
             <div className="preload" ref={preload_ref}><img className="preload-gif" alt="" /></div>
-            <div className="navbar">
-                <a className="to-quiz" href="#quiz">
-                    <div className="label">Start Quiz</div>
-                </a>
-                <a className="to-problem" href="#problem-creation">
-                    <div className="label">Add Problems</div>
-                </a>
-                <a className="to-problem-list" href="/problems">
-                    <div className="label">Problem List</div>
-                </a>
-            </div>
-
-            <div className="quiz" id="quiz">
-                <div className="quiz-container">
-                    <button className="start-btn" onClick={startQuiz}> {"|> start"}</button>
-                    <img className="sample" ref={sample_ref} alt="" />
-                    <input className="answer" ref={input_ref} type="text" placeholder="what's the name of the animal?" />
-                    <button className="submit-btn" onClick={sumbitAnswer}>{"->"}</button>
+            <div className="postload" ref={postload_ref} style={{ display: "none" }}>
+                <div className="navbar">
+                    <a className="to-quiz" href="#quiz">
+                        <div className="label">Start Quiz</div>
+                    </a>
+                    <a className="to-problem" href="#problem-creation">
+                        <div className="label">Add Problems</div>
+                    </a>
+                    <a className="to-problem-list" href="/problems">
+                        <div className="label">Problem List</div>
+                    </a>
                 </div>
-            </div>
 
-            <div className="problem-creation" id="problem-creation">
-                <div className="form-container">
-                    <div className="prompt" ref={prompt_ref}></div>
-                    <img className="selected-img" ref={checkImage_ref} alt="" />
-                    <input className="img-src" ref={url_ref} type="text" placeholder="paste the image url here" />
-                    <input className="img-answer" ref={ans_ref} type="text" placeholder="write the answer here" />
-                    <button className="check-btn" onClick={checkImage}>check</button>
-                    <button className="add-btn" onClick={addImage}>add</button>
+                <div className="quiz" id="quiz">
+                    <div className="quiz-container">
+                        <button className="start-btn" onClick={startQuiz}> {"|> start"}</button>
+                        <img className="sample" ref={sample_ref} alt="" />
+                        <input className="answer" ref={input_ref} type="text" placeholder="what's the name of the animal?" />
+                        <button className="submit-btn" onClick={sumbitAnswer}>{"->"}</button>
+                    </div>
+                </div>
+
+                <div className="problem-creation" id="problem-creation">
+                    <div className="form-container">
+                        <div className="prompt" ref={prompt_ref}></div>
+                        <img className="selected-img" ref={checkImage_ref} alt="" />
+                        <input className="img-src" ref={url_ref} type="text" placeholder="paste the image url here" />
+                        <input className="img-answer" ref={ans_ref} type="text" placeholder="write the answer here" />
+                        <button className="check-btn" onClick={checkImage}>check</button>
+                        <button className="add-btn" onClick={addImage}>add</button>
+                    </div>
                 </div>
             </div>
         </>

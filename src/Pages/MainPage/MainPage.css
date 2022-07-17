@@ -4,7 +4,6 @@ html {
 
 body {
     margin: 0;
-    overflow: hidden;
 }
 
 a{
@@ -56,7 +55,7 @@ a{
     transition: all 0.5s;
 }
 
-.to-problem:hover, .to-quiz:hover, .to-problem-list:hover {
+.to-problem:hover, .to-quiz:hover, .to-problem-list:hover{
     color: black;
     background-color: plum;
 }
@@ -71,7 +70,7 @@ a{
 .quiz {
     height: 100vh;
     width: 100%;
-    background-image: linear-gradient( 135deg, #FFF6B7 10%, #F6416C 100%);
+    background-image: linear-gradient( 135deg, #FFD26F 10%, #3677FF 100%);
     display: flex;
     justify-content: center;
     align-items: center;

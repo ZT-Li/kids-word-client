@@ -12,22 +12,36 @@ const ProblemListPage = () => {
         //get data from database
         axios.get(url)
             .then(res => {
-                setDataArray(res.data);
+                let dataMatrix = [];
+                while (res.data.length) {
+                    dataMatrix.push(res.data.splice(0, 5));
+                }
+
+                setDataArray(dataMatrix);
             }).catch(err => console.log(err));
     }
 
     window.addEventListener('load', e => {
+        e.preventDefault();
         seeAllProblems();
     })
 
     return (
-        <>
-            <div className='problem-container'>
-                {dataArray.map((data, idx) => (
-                    <ProblemCard img={data.img_src} ans={data.answer} id={data._id} key={idx} />
-                ))}
+        <div className='problems-body'>
+            <div className='problems-navibar'>
+                <a className='to-home' href='/'>
+                    <div className='label'>Home</div>
+                </a>
             </div>
-        </>
+            {dataArray.map((dataSubArray, idx) => (
+                <div className='problem-container' key={idx}>
+                    {dataSubArray.map((data, idx) => (
+                        <ProblemCard img={data.img_src} ans={data.answer} id={data._id} key={idx} />
+                    ))}
+                </div>
+            ))}
+
+        </div>
     );
 }
 
