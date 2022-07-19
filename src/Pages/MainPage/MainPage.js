@@ -48,9 +48,13 @@ const MainPage = () => {
         //send the img url and answer to the server
         axios.post(process.env.REACT_APP_API_URL, {
             img_src: url_ref.current.value,
-            answer: ans_ref.current.value
+            answer: ans_ref.current.value.toLowerCase()
         })
-            .then(res => console.log(res))
+            .then(() => {
+                checkImage_ref.current.src = "";
+                url_ref.current.value = "";
+                ans_ref.current.value = "";
+            })
             .catch(err => console.log(err));
 
     }
@@ -76,7 +80,7 @@ const MainPage = () => {
         e.preventDefault();
         if (dataIdx >= dataArray.length)
             alert("You have passed all quiz");
-        else if (dataArray[dataIdx].answer === input_ref.current.value) {
+        else if (dataArray[dataIdx].answer === input_ref.current.value.toLowerCase()) {
             dataIdx += 1;
             if (dataIdx >= dataArray.length)
                 alert("pass all quiz");

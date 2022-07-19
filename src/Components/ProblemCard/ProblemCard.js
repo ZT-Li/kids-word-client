@@ -29,9 +29,10 @@ const ProblemCard = (props) => {
         e.preventDefault();
         input_ref.current.disabled = true;
         input_ref.current.style.background = "transparent";
+        input_ref.current.value = input_ref.current.value.toLowerCase();
 
         //update the change on database
-        axios.patch(process.env.REACT_APP_API_URL + '/' + props.id, { answer: input_ref.current.value })
+        axios.patch(process.env.REACT_APP_API_URL + '/' + props.id, { answer: input_ref.current.value.toLowerCase() })
             .then(alert("update completed"))
             .catch(err => console.log(err));
 
